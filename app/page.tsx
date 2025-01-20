@@ -1,3 +1,9 @@
+import Playground from '@/components/Playground/Playground';
+
 export default function Home() {
-	return <div>{/* Plaground */}</div>;
+	return (
+		<div>
+			<Playground />
+		</div>
+	);
 }
