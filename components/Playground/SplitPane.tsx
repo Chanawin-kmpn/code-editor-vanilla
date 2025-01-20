@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef } from 'react'
+import useDrag from './utils/useDrag';
 
 const DIVIDER_WIDTH = 16;
 
@@ -27,7 +28,7 @@ const SplitPane = ({
     const containerRef = useRef<HTMLDivElement>(null);  
     const dividerRef = useRef<HTMLButtonElement>(null);  
   
-    const { leftWidth, rightWidth, reset } = useDrag({  
+    const { leftWidth, rightWidth } = useDrag({  
       defaultRatio: splitRatio,  
       rulerRef,  
       containerRef,  
