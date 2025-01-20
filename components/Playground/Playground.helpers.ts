@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 interface UsePaneDataProps {
 	mode: 'default' | 'react';
@@ -60,4 +60,34 @@ export function usePaneData({
 	}
 
 	return panes;
+}
+
+export function useFullscreen(startFullscreened: boolean) {
+	const [isFullscreened, setIsFullscreened] = useState(startFullscreened);
+
+	useEffect(() => {
+		if (!isFullscreened) {
+			return;
+		}
+
+		function handleKeydown(ev: KeyboardEvent) {
+			if (ev.key === 'Escape') {
+				setIsFullscreened(false);
+			}
+		}
+
+		window.addEventListener('keydown', handleKeydown);
+
+		window.requestAnimationFrame(() => {
+			const fullscreenElem = document.querySelector(`#fs-wrapper`);
+
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			fullscreenElem?.focus();
+		});
+
+		return () => {
+			window.removeEventListener('keydown', handleKeydown);
+		};
+	}, [isFullscreened]);
 }

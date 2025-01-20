@@ -2,7 +2,7 @@
 import React, { useMemo, useState } from 'react';
 import Result from './Result';
 import Pane from './Pane';
-import { usePaneData } from './Playground.helpers';
+import { useFullscreen, usePaneData } from './Playground.helpers';
 
 interface PlaygroundProps {
 	id: string;
