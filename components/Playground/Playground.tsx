@@ -2,6 +2,7 @@
 import React, { useMemo, useState } from 'react';
 import Result from './Result';
 import Pane from './Pane';
+import { usePaneData } from './Playground.helpers';
 
 interface PlaygroundProps {
 	id: string;
@@ -9,7 +10,7 @@ interface PlaygroundProps {
 	html: string;
 	css: string;
 	js: string;
-	mode: 'defalut' | 'react';
+	mode: 'default' | 'react';
 	layoutMode: 'codepen' | 'side-by-side' | 'vertical-stack' | 'tabbed';
 	size: 'normal' | 'wide';
 	centered: boolean;
@@ -44,9 +45,21 @@ const Playground = ({
 
 	const [randomId, setRandomId] = useState('initial');
 
+	const [isFullscreened, toggleFullscreen] = useFullscreen(startFullscreened);
+
 	// TODO สร้างปุ่มที่ใช้ handleFormat
 
 	// TODO สร้างข้อมูลที่ใช้ในการส่งข้อมูลที่ใช้กับ layout ที่หลากหลาย
+
+	const paneData = usePaneData({
+		mode,
+		htmlCode,
+		setHtmlCode,
+		cssCode,
+		setCssCode,
+		jsCode,
+		setJsCode,
+	});
 
 	function handleReset() {
 		setHtmlCode(html?.trim());
@@ -62,6 +75,11 @@ const Playground = ({
 		}),
 		[htmlCode, cssCode, jsCode]
 	);
+
+	layoutMode =
+		layoutMode || (paneData.length === 1 ? 'side-by-side' : 'codepen');
+
+	const stretchResults = isFullscreened || layoutMode !== 'codepen';
 
 	// สร้าง component ฝั่งขวาที่เป็นส่วนของ Result
 	const resultPane = (
