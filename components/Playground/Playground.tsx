@@ -1,6 +1,7 @@
 'use client';
 import React, { useMemo, useState } from 'react';
 import Result from './Result';
+import Pane from './Pane';
 
 interface PlaygroundProps {
 	id: string;
@@ -41,6 +42,8 @@ const Playground = ({
 	const [cssCode, setCssCode] = useState(css?.trim());
 	const [jsCode, setJsCode] = useState(js?.trim());
 
+	const [randomId, setRandomId] = useState('initial');
+
 	// TODO สร้างปุ่มที่ใช้ handleFormat
 
 	// TODO สร้างข้อมูลที่ใช้ในการส่งข้อมูลที่ใช้กับ layout ที่หลากหลาย
@@ -62,11 +65,19 @@ const Playground = ({
 
 	// สร้าง component ฝั่งขวาที่เป็นส่วนของ Result
 	const resultPane = (
-		<div>
-			<div>
-				<Result />
-			</div>
-		</div>
+		<Pane
+			title="Result"
+			style={{ height: stretchResults ? '100%' : undefined }}
+			actions={
+				<RefreshButton
+					handleRefresh={() => {
+						setRandomId(Math.random().toString());
+					}}
+				/>
+			}
+		>
+			<Result />
+		</Pane>
 	);
 
 	let contents;
