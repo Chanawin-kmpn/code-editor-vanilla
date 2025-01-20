@@ -3,6 +3,7 @@ import React, { useMemo, useState } from 'react';
 import Result from './Result';
 import Pane from './Pane';
 import { useFullscreen, usePaneData, usePrettier } from './Playground.helpers';
+import RefreshButton from './Toolbar/RefreshButton';
 
 interface PlaygroundProps {
 	id: string;

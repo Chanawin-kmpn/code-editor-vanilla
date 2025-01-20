@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@reach/tabs": "^0.18.0",
+    "lucide-react": "^0.473.0",
     "next": "15.1.4",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.0.0",
