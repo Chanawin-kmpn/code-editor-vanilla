@@ -2,7 +2,7 @@
 import React, { useMemo, useState } from 'react';
 import Result from './Result';
 import Pane from './Pane';
-import { useFullscreen, usePaneData } from './Playground.helpers';
+import { useFullscreen, usePaneData, usePrettier } from './Playground.helpers';
 
 interface PlaygroundProps {
 	id: string;
@@ -48,6 +48,15 @@ const Playground = ({
 	const [isFullscreened, toggleFullscreen] = useFullscreen(startFullscreened);
 
 	// TODO สร้างปุ่มที่ใช้ handleFormat
+
+	const handleFormat = usePrettier({
+		htmlCode,
+		setHtmlCode,
+		cssCode,
+		setCssCode,
+		jsCode,
+		setJsCode,
+	});
 
 	// TODO สร้างข้อมูลที่ใช้ในการส่งข้อมูลที่ใช้กับ layout ที่หลากหลาย
 

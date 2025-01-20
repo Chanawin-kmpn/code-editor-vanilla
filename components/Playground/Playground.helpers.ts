@@ -1,6 +1,12 @@
-import { useEffect, useMemo, useState } from 'react';
+import type * as PrettierType from 'prettier';
+import type { Plugin } from 'prettier';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
-interface UsePaneDataProps {
+interface PrettierStandalone {
+	format: (source: string, options: PrettierType.Options) => Promise<string>;
+}
+
+interface UsePaneData {
 	mode: 'default' | 'react';
 	htmlCode: string;
 	setHtmlCode: (code: string) => void;
@@ -9,6 +15,101 @@ interface UsePaneDataProps {
 	jsCode: string;
 	setJsCode: (code: string) => void;
 }
+
+interface UsePrettier {
+	htmlCode: string;
+	setHtmlCode: (code: string) => void;
+	cssCode: string;
+	setCssCode: (code: string) => void;
+	jsCode: string;
+	setJsCode: (code: string) => void;
+}
+
+export function usePrettier({
+	htmlCode,
+	setHtmlCode,
+	cssCode,
+	setCssCode,
+	jsCode,
+	setJsCode,
+}: UsePrettier) {
+	const [prettier, setPrettier] = useState<PrettierStandalone | null>(null);
+	const [babelParser, setBabelParser] = useState<Plugin | null>(null);
+	const [cssParser, setCssParser] = useState<Plugin | null>(null);
+	const [htmlParser, setHtmlParser] = useState<Plugin | null>(null);
+
+	useEffect(() => {
+		Promise.all([
+			import('prettier/standalone'),
+			import('prettier/parser-html'),
+			import('prettier/parser-postcss'),
+			import('prettier/parser-babel'),
+		])
+			.then(([prettierModule, htmlModule, cssModule, babelModule]) => {
+				setPrettier(prettierModule.default as PrettierStandalone);
+				setHtmlParser(htmlModule.default);
+				setCssParser(cssModule.default);
+				setBabelParser(babelModule.default);
+			})
+			.catch((err) => {
+				console.error('Could not load Prettier and its parsers:', err);
+			});
+	}, []);
+
+	const hasLoaded = !!prettier && !!htmlParser && !!cssParser && !!babelParser;
+
+	const handleFormat = useCallback(async () => {
+		if (!hasLoaded || !prettier || !htmlParser || !cssParser || !babelParser) {
+			return;
+		}
+
+		const prettierOptions = {
+			printWidth: 40,
+		};
+
+		if (jsCode) {
+			const formattedJsCode = await prettier.format(jsCode, {
+				parser: 'babel',
+				plugins: [babelParser],
+				...prettierOptions,
+			});
+			setJsCode(formattedJsCode);
+		}
+
+		if (cssCode) {
+			const formattedCssCode = await prettier.format(cssCode, {
+				parser: 'css',
+				plugins: [cssParser],
+				...prettierOptions,
+			});
+			setCssCode(formattedCssCode);
+		}
+
+		if (htmlCode) {
+			const formattedHtmlCode = await prettier.format(htmlCode, {
+				parser: 'html',
+				plugins: [htmlParser],
+				...prettierOptions,
+			});
+			setHtmlCode(formattedHtmlCode);
+		}
+	}, [
+		hasLoaded,
+		jsCode,
+		cssCode,
+		htmlCode,
+		babelParser,
+		cssParser,
+		htmlParser,
+		prettier,
+		setCssCode,
+		setHtmlCode,
+		setJsCode,
+	]);
+
+	return handleFormat;
+}
+
 export function usePaneData({
 	mode,
 	htmlCode,
@@ -17,7 +118,7 @@ export function usePaneData({
 	setCssCode,
 	jsCode,
 	setJsCode,
-}: UsePaneDataProps) {
+}: UsePaneData) {
 	const panes = useMemo(() => {
 		const paneData = [
 			{
