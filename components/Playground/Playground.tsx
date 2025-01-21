@@ -6,6 +6,7 @@ import { useFullscreen, usePaneData, usePrettier } from './Playground.helpers';
 import RefreshButton from './Toolbar/RefreshButton';
 import SplitPane from './SplitPane';
 import Editor from './Editor';
+import TabbedEditors from './TabbedEditors';
 
 interface PlaygroundProps {
 	id: string;
@@ -206,11 +207,44 @@ const Playground = ({
 		}
 
 		case 'vertical-stack': {
+			const [firstPane, secondPane] = paneData;
 			contents = (
-				<>
-					{/* Splitpane จะรับ CodeEditor ทั้งสองอย่างแต่ว่าเป็นแนวตั้งโดยจะเป็นทางซ้ายจะเรียงโดย css และ html เป็นแนวตั้ง ส่วนผลลัพธ์ก็จะอยู่ทางขวา */}
-				</>
+				<SplitPane
+					splitRatio={Number(splitRatio)}
+					isFullscreened={isFullscreened}
+					leftChild={
+						<div>
+							<Pane title={firstPane.label} style={{ flex: 1, minHeight: 0 }}>
+								<Editor
+									code={firstPane.code}
+									language={firstPane.language}
+									handleUpdate={firstPane.handleUpdate}
+									handleFormat={handleFormat}
+								/>
+							</Pane>
+							<div className="border-t-[1px] border-zinc-700" />
+							<Pane
+								title={secondPane.label}
+								style={{
+									flex: 1,
+									minHeight: 0,
+								}}
+							>
+								<Editor
+									code={secondPane.code}
+									language={secondPane.language}
+									handleUpdate={secondPane.handleUpdate}
+									handleFormat={handleFormat}
+								/>
+							</Pane>
+						</div>
+					}
+					rightChild={resultPane}
+				/>
 			);
+		}
+		default: {
+			throw new Error('Unrecognized layout mode: ' + layoutMode);
 		}
 	}
 

@@ -3,7 +3,7 @@ interface PaneProps {
 	title: string;
 	children: React.ReactNode;
 	actions?: React.ReactNode;
-	style?: { [key: string]: string | undefined };
+	style?: { [key: string]: string | number | undefined };
 }
 
 const Pane = ({ title, children, actions, ...delegated }: PaneProps) => {
