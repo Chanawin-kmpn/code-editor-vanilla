@@ -85,4 +85,10 @@ body {
 			}
 		}
 	}
+
+	.inline-outer-wrapper {
+		&[data-stacked='true'] {
+			margin-bottom: 16px;
+		}
+	}
 }

@@ -7,6 +7,7 @@ import RefreshButton from './Toolbar/RefreshButton';
 import SplitPane from './SplitPane';
 import Editor from './Editor';
 import TabbedEditors from './TabbedEditors';
+import CodeWrapper from './CodeWrapper';
 
 interface PlaygroundProps {
 	id: string;
@@ -249,10 +250,16 @@ const Playground = ({
 	}
 
 	return (
-		<div>
+		<CodeWrapper
+			data-id={id}
+			size={size}
+			stacked={!!stacked}
+			isFullscreened={isFullscreened}
+			// hideTabCheckbox={hideTabCheckbox}
+		>
 			Toolbar
 			{contents}
-		</div>
+		</CodeWrapper>
 	);
 };
 
