@@ -4,6 +4,8 @@ import Result from './Result';
 import Pane from './Pane';
 import { useFullscreen, usePaneData, usePrettier } from './Playground.helpers';
 import RefreshButton from './Toolbar/RefreshButton';
+import SplitPane from './SplitPane';
+import Editor from './Editor';
 
 interface PlaygroundProps {
 	id: string;
@@ -32,6 +34,7 @@ const Playground = ({
 	mode = 'default',
 	layoutMode,
 	size = 'normal',
+	centered,
 	boxSizing = 'border-box',
 	splitRatio = '0.5',
 	resultStyle = {},
@@ -104,7 +107,18 @@ const Playground = ({
 				/>
 			}
 		>
-			<Result />
+			<Result
+				key={randomId}
+				id={id}
+				codeMap={codeMap}
+				mode={mode}
+				centered={centered}
+				stretched={stretchResults}
+				layoutMode={layoutMode}
+				isFullscreened={isFullscreened}
+				boxSizing={boxSizing}
+				style={resultStyle}
+			/>
 		</Pane>
 	);
 
@@ -112,18 +126,62 @@ const Playground = ({
 	// สร้างเนื้อหาสำหรับ Codeeditor จาก layoutMode
 	switch (layoutMode) {
 		case 'codepen': {
+			const [firstPane, secondPane] = paneData;
 			contents = (
 				<>
 					{/* Splitpane ที่รับเป็น CodeEdior  ซ้ายและขวา ซึ่ง ผลลัพธ์จะอยู่ข้างล่าง */}
+					<SplitPane
+						splitRatio={Number(splitRatio)}
+						isFullscreened={isFullscreened}
+						leftChild={
+							<Pane title={firstPane.label}>
+								<Editor
+									code={firstPane.code}
+									language={firstPane.language}
+									handleUpdate={firstPane.handleUpdate}
+									handleFormat={handleFormat}
+									maxHeight={isFullscreened ? undefined : '50vh'}
+								/>
+							</Pane>
+						}
+						rightChild={
+							<Pane title={secondPane.label}>
+								<Editor
+									code={secondPane.code}
+									language={secondPane.language}
+									handleUpdate={secondPane.handleUpdate}
+									handleFormat={handleFormat}
+									maxHeight={isFullscreened ? undefined : '50vh'}
+								/>
+							</Pane>
+						}
+					/>
+					<div className="border-t-[1px] h-full flex-1">{resultPane}</div>
 				</>
 			);
 			break;
 		}
 
 		case 'side-by-side': {
+			const [data] = paneData;
+			const { label, ...editorData } = data;
 			contents = (
 				<>
 					{/* Splitpane จะรับ CodeEditor อันเดียว อยู่ทางด้านซ้าย และผลลัพธ์จะอยู่ด้านขวา */}
+					<SplitPane
+						splitRatio={Number(splitRatio)}
+						isFullscreened={isFullscreened}
+						leftChild={
+							<Pane title={label} style={{ height: '100%' }}>
+								<Editor
+									{...editorData}
+									handleFormat={handleFormat}
+									maxHeight={isFullscreened ? undefined : '100vh'}
+								/>
+							</Pane>
+						}
+						rightChild={resultPane}
+					/>
 				</>
 			);
 			break;
@@ -131,9 +189,19 @@ const Playground = ({
 
 		case 'tabbed': {
 			contents = (
-				<>
-					{/* Splitpane จะรับ CodeEditor ทั้งสองอันอยู่ทางซ้ายโดยใช้ Tab ในการเลือก CodeEditor และ ผลลัพธ์จะอยู่ด้านขวา */}
-				</>
+				<SplitPane
+					splitRatio={Number(splitRatio)}
+					isFullscreened={isFullscreened}
+					leftChild={
+						<TabbedEditors
+							paneData={paneData}
+							splitRatio={Number(splitRatio)}
+							maxHeight={!isFullscreened ? '80vh' : '100%'}
+							handleFormat={handleFormat}
+						/>
+					}
+					rightChild={resultPane}
+				/>
 			);
 		}
 

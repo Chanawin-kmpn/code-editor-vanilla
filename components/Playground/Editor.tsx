@@ -6,7 +6,7 @@ import { flushSync } from 'react-dom';
 
 interface EditorProps {
 	code: string;
-	language: 'markup' | 'css' | 'javascript' | 'jsx';
+	language: string;
 	maxHeight?: string | undefined;
 	handleUpdate: (code: string) => void;
 	handleFormat: () => void;
