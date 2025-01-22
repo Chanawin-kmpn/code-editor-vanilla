@@ -8,6 +8,7 @@ import SplitPane from './SplitPane';
 import Editor from './Editor';
 import TabbedEditors from './TabbedEditors';
 import CodeWrapper from './CodeWrapper';
+import Toolbar from './Toolbar/Toolbar';
 
 interface PlaygroundProps {
 	id: string;
@@ -42,8 +43,6 @@ const Playground = ({
 	resultStyle = {},
 	stacked,
 	startFullscreened,
-	hideTabCheckbox,
-	...rest
 }: PlaygroundProps) => {
 	const [htmlCode, setHtmlCode] = useState(html?.trim());
 	const [cssCode, setCssCode] = useState(css?.trim());
@@ -257,7 +256,13 @@ const Playground = ({
 			isFullscreened={isFullscreened}
 			// hideTabCheckbox={hideTabCheckbox}
 		>
-			Toolbar
+			<Toolbar
+				title={title}
+				isFullscreened={isFullscreened}
+				handleToggleFullscreen={toggleFullscreen}
+				handleReset={handleReset}
+				handleFormat={handleFormat}
+			/>
 			{contents}
 		</CodeWrapper>
 	);

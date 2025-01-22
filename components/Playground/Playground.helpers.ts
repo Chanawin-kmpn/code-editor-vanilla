@@ -163,7 +163,9 @@ export function usePaneData({
 	return panes;
 }
 
-export function useFullscreen(startFullscreened: boolean) {
+export function useFullscreen(
+	startFullscreened: boolean
+): [boolean, () => void] {
 	const [isFullscreened, setIsFullscreened] = useState(startFullscreened);
 
 	useEffect(() => {
@@ -191,4 +193,6 @@ export function useFullscreen(startFullscreened: boolean) {
 			window.removeEventListener('keydown', handleKeydown);
 		};
 	}, [isFullscreened]);
+
+	return [isFullscreened, () => setIsFullscreened((prev) => !prev)];
 }
