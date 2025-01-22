@@ -10,7 +10,7 @@ export default function Home() {
 		<button class="card-button">Learn More</button>  
 	  </div>  
 	</div>  
-	  `.trim();
+	  `;
 
 	const cssCode = `  
 	.card {  
