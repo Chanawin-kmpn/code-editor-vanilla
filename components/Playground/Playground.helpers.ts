@@ -123,13 +123,13 @@ export function usePaneData({
 		const paneData = [
 			{
 				language: 'markup',
-				label: 'HTML',
+				label: 'index.html',
 				code: htmlCode,
 				handleUpdate: setHtmlCode,
 			},
 			{
 				language: 'css',
-				label: 'CSS',
+				label: 'style.css',
 				code: cssCode,
 				handleUpdate: setCssCode,
 			},

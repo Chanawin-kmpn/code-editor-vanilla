@@ -29,7 +29,7 @@ body {
 		pointer-events: auto;
 
 		&:focus-visible {
-			outline-color: var(--color-primary);
+			outline-color: #84cc16;
 		}
 
 		&:before,
@@ -47,10 +47,11 @@ body {
 		&:before {
 			width: 100%;
 			height: 1px;
-			background-color: var(--color-gray-200);
+			background-color: #71717a;
 		}
 
 		@media (min-width: 768px) {
+			width: 16px;
 			cursor: col-resize;
 			padding: 0;
 

@@ -8,7 +8,7 @@ interface PaneProps {
 
 const Pane = ({ title, children, actions, ...delegated }: PaneProps) => {
 	return (
-		<div className="pb-4 flex flex-col h-full" {...delegated}>
+		<div className="pb-4 px-4 flex flex-col h-full p" {...delegated}>
 			<header>
 				<p className="">{title}</p>
 				{actions}

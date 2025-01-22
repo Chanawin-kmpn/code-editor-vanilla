@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef } from 'react';
 import useDrag from './utils/useDrag';
 
@@ -43,15 +42,13 @@ const SplitPane = ({
 				style={{ flex: isFullscreened ? 1 : undefined }}
 			>
 				<div
+					ref={containerRef}
 					className={`${className} flex flex-col items-stretch h-full md:flex-row`}
 				>
 					<div className="md:-mr-2" style={{ flex: leftWidth }}>
 						{leftChild}
 					</div>
-					<button
-						ref={dividerRef}
-						className={`divider-btn md:w-[${DIVIDER_WIDTH}px]`}
-					>
+					<button ref={dividerRef} className="divider-btn">
 						<span className="sr-only">
 							Resize editor. Use left/right arrows.
 						</span>

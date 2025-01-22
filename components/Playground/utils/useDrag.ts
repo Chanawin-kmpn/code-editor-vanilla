@@ -69,7 +69,7 @@ function useDrag({
 		document.addEventListener('mousemove', keepDragging);
 		document.addEventListener('mouseup', stopDrag);
 		if (containerRef.current) {
-			containerRef.current.style.pointerEvents = 'none';
+			containerRef.current.style.pointerEvents = 'none'; // เพื่อป้องกันการคลิกอื่นที่อยู่ใน container ส่งผลให้เกิดการ drag หลุดออกจาก container
 		}
 	}, [keepDragging, stopDrag, containerRef]);
 
