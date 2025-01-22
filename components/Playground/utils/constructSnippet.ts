@@ -42,31 +42,6 @@ function constructSnippet({
 
       <!-- global styles -->
       <style>
-        @font-face {
-          font-family: 'Wotfard';
-          src: url('/fonts/wotfard/wotfard-semibold-webfont.woff2')
-            format('woff2');
-          font-weight: 600;
-          font-style: normal;
-          font-display: fallback;
-        }
-        @font-face {
-          font-family: 'Wotfard';
-          src: url('/fonts/wotfard/wotfard-medium-webfont.woff2')
-            format('woff2');
-          font-weight: 500;
-          font-style: normal;
-          font-display: fallback;
-        }
-        @font-face {
-          font-family: 'Wotfard';
-          src: url('/fonts/wotfard/wotfard-regular-webfont.woff2')
-            format('woff2');
-          font-weight: 400;
-          font-style: normal;
-          font-display: fallback;
-        }
-
         body {
           margin: 0;
           padding: 8px;
@@ -84,7 +59,6 @@ function constructSnippet({
           line-height: 1.5;
           line-height: calc(1em + 0.5rem);
           -webkit-font-smoothing: antialiased;
-          font-family: Wotfard;
         }
       </style>
 

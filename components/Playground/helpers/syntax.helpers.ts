@@ -1,33 +1,34 @@
-export const syntaxTheme = {
+import { PrismTheme } from 'prism-react-renderer';
+
+export const syntaxTheme: PrismTheme = {
 	plain: {
-		color: 'var(--syntax-txt)',
+		color: '#e4e4e7', // แทน var(--syntax-txt)
 		backgroundColor: 'transparent',
-		padding: 0,
-		fontFamily: 'var(--font-family-mono)',
 	},
 	styles: [
 		{
 			types: ['prolog', 'comment', 'doctype', 'cdata'],
 			style: {
-				color: 'var(--syntax-comment)',
+				color: '#6a737d', // แทน var(--syntax-comment)
 			},
 		},
+		{ types: ['tag'], style: { color: '#CD743A' } },
 		{
-			types: ['property', 'tag', 'deleted', 'constant', 'symbol'],
-			style: { color: 'var(--syntax-prop)' },
+			types: ['property', 'deleted', 'constant', 'symbol'],
+			style: { color: '#7CD9FA' }, // แทน var(--syntax-prop)
 		},
 		{
 			types: ['boolean', 'number'],
-			style: { color: 'var(--syntax-bool)' },
+			style: { color: '#CD743A' }, // แทน var(--syntax-bool)
 		},
 		{
 			types: ['attr-name', 'tag'],
-			style: { fontWeight: 'var(--font-weight-medium)' },
+			style: { fontWeight: '500' }, // แทน var(--font-weight-medium)
 		},
 		{
 			types: ['string', 'attr-value'],
 			style: {
-				color: 'var(--syntax-val)',
+				color: '#3b82f6', // แทน var(--syntax-val)
 			},
 		},
 		{
@@ -41,7 +42,7 @@ export const syntaxTheme = {
 				'keyword',
 			],
 			style: {
-				color: 'var(--syntax-str)',
+				color: '#d73a49', // แทน var(--syntax-str)
 			},
 		},
 		{
@@ -54,13 +55,13 @@ export const syntaxTheme = {
 				'script-punctuation',
 			],
 			style: {
-				color: 'var(--syntax-name)',
+				color: '#84cc16', // แทน var(--syntax-name)
 			},
 		},
 		{
 			types: ['deleted'],
 			style: {
-				color: 'var(--syntax-del)',
+				color: '#b31d28', // แทน var(--syntax-del)
 			},
 		},
 		{
@@ -72,32 +73,27 @@ export const syntaxTheme = {
 		{
 			types: ['important', 'bold'],
 			style: {
-				fontWeight: 'var(--font-weight-bold)',
+				fontWeight: '700', // แทน var(--font-weight-bold)
 			},
 		},
 		{
 			types: ['regex', 'important'],
 			style: {
-				color: 'var(--syntax-regex)',
+				color: '#e36209', // แทน var(--syntax-regex)
 			},
 		},
 		{
 			types: ['atrule', 'function'],
 			style: {
-				color: 'var(--syntax-fn)',
+				color: '#6f42c1', // แทน var(--syntax-fn)
 			},
 		},
-		{
-			types: ['symbol'],
-			style: {
-				opacity: '0.7',
-			},
-		},
+
 		{
 			types: ['string'],
 			style: {
-				fontWeight: 'var(--font-weight-medium)',
+				fontWeight: '500', // แทน var(--font-weight-medium)
 			},
 		},
 	],
-};
+} as const;

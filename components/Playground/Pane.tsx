@@ -9,10 +9,10 @@ interface PaneProps {
 const Pane = ({ title, children, actions, ...delegated }: PaneProps) => {
 	return (
 		<div className="pb-4 px-4 flex flex-col h-full p" {...delegated}>
-			<header>
-				<p className="">{title}</p>
+			<div className="flex items-center justify-between h-[46px] mb-6 border-b border-zinc-500">
+				<p className="font-firaCode">{title}</p>
 				{actions}
-			</header>
+			</div>
 			{children}
 		</div>
 	);

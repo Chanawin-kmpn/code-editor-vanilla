@@ -29,7 +29,7 @@ const TabbedEditors = ({
 		activeLanguage === firstPane.language ? firstPane : secondPane;
 	return (
 		<div className="p-4 pt-0 flex flex-col h-full max-h-full" {...delegated}>
-			<div className="flex items-center space-x-4 h-[46px]">
+			<div className="flex items-center space-x-4 h-[46px] border-b border-zinc-500">
 				{paneData.map(
 					(pane: {
 						language: string;
@@ -39,7 +39,7 @@ const TabbedEditors = ({
 					}) => (
 						<button
 							key={pane.language}
-							className={`${pane === activePane ? 'font-bold text-zinc-100' : 'font-normal text-zinc-500'}  px-4 py-2 rounded-md`}
+							className={`${pane === activePane ? 'font-bold text-zinc-100 border mt-1 border-transparent border-b-lime-500 ' : 'font-normal text-zinc-500'} font-firaCode px-4 py-2 `}
 							onClick={() => setActiveLanguage(pane.language)}
 						>
 							{pane.label}

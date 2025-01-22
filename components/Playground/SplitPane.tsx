@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useRef } from 'react';
 import useDrag from './utils/useDrag';
 
@@ -38,7 +39,7 @@ const SplitPane = ({
 		<>
 			<div ref={rulerRef} />
 			<div
-				className="max-w-full overflow-hidden max-md:rounded-none max-md:border-l-0 max-md:border-r-0"
+				className="max-w-full overflow-hidden max-md:rounded-none max-md:border-l-0 max-md:border-r-0 bg-zinc-900"
 				style={{ flex: isFullscreened ? 1 : undefined }}
 			>
 				<div
@@ -53,7 +54,9 @@ const SplitPane = ({
 							Resize editor. Use left/right arrows.
 						</span>
 					</button>
-					<div style={{ flex: rightWidth }}>{rightChild}</div>
+					<div style={{ flex: rightWidth }} className="min-w-32 md:-ml-2">
+						{rightChild}
+					</div>
 				</div>
 			</div>
 		</>

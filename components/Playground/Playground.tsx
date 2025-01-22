@@ -95,6 +95,7 @@ const Playground = ({
 
 	const stretchResults = isFullscreened || layoutMode !== 'codepen';
 
+	console.log(stretchResults);
 	// สร้าง component ฝั่งขวาที่เป็นส่วนของ Result
 	const resultPane = (
 		<Pane

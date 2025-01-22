@@ -3,6 +3,7 @@ import SimpleEditor from 'react-simple-code-editor';
 import React, { ComponentRef, useRef, useState } from 'react';
 import { Highlight } from 'prism-react-renderer';
 import { flushSync } from 'react-dom';
+import { syntaxTheme } from './helpers/syntax.helpers';
 
 interface EditorProps {
 	code: string | undefined;
@@ -90,8 +91,9 @@ const Editor = ({
 					onValueChange={handleUpdate}
 					onKeyDown={handleKeyDown}
 					translate="no"
+					className="font-firaCode"
 					highlight={(code) => (
-						<Highlight code={code} language={language}>
+						<Highlight theme={syntaxTheme} code={code} language={language}>
 							{({ tokens, getLineProps, getTokenProps }) => (
 								<>
 									{tokens.map((line, i) => (

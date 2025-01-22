@@ -40,7 +40,7 @@ const CodeWrapper = ({
 		return (
 			<>
 				<div
-					className="mb-12 max-md:mb-8 inline-outer-wrapper"
+					className="mb-12 max-md:mb-8 inline-outer-wrapper "
 					data-stacked={String(!!stacked)}
 					// as={size === 'wide' ? FullWidthChild : 'div'}
 				>

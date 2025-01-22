@@ -12,8 +12,10 @@ interface ToolbarProps {
 
 const Toolbar = ({ title, handleReset, handleFormat }: ToolbarProps) => {
 	return (
-		<div className="relative flex justify-between items-center h-8 leading-8 px-4 bg-zinc-700 rounded-md">
-			<p className="text-sm">{title || 'Code Playground'}</p>
+		<div className="relative flex justify-between items-center h-8 leading-8 px-4 bg-zinc-700 rounded-t-md">
+			<p className="text-sm font-firaCode font-bold">
+				{title || 'Code Playground'}
+			</p>
 			<div className="flex gap-2 -mr-[10px] text-white">
 				<FormatButton handleFormat={handleFormat} />
 				<ResetButton handleReset={handleReset} />

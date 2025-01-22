@@ -8,7 +8,7 @@ interface FormatButtonProps {
 const FormatButton = ({ handleFormat }: FormatButtonProps) => {
 	return (
 		<button onClick={handleFormat}>
-			<Wand />
+			<Wand size={16} />
 		</button>
 	);
 };
