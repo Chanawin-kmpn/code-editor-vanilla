@@ -6,7 +6,7 @@ interface TabbedEditorsProps {
 	paneData: Array<{
 		language: string;
 		label: string;
-		code: string;
+		code: string | undefined;
 		handleUpdate: (code: string) => void;
 	}>;
 	splitRatio: number;
@@ -34,7 +34,7 @@ const TabbedEditors = ({
 					(pane: {
 						language: string;
 						label: string;
-						code: string;
+						code: string | undefined;
 						handleUpdate: (code: string) => void;
 					}) => (
 						<button

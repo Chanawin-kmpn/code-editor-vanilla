@@ -8,20 +8,20 @@ interface PrettierStandalone {
 
 interface UsePaneData {
 	mode: 'default' | 'react';
-	htmlCode: string;
+	htmlCode: string | undefined;
 	setHtmlCode: (code: string) => void;
-	cssCode: string;
+	cssCode: string | undefined;
 	setCssCode: (code: string) => void;
-	jsCode: string;
+	jsCode: string | undefined;
 	setJsCode: (code: string) => void;
 }
 
 interface UsePrettier {
-	htmlCode: string;
+	htmlCode: string | undefined;
 	setHtmlCode: (code: string) => void;
-	cssCode: string;
+	cssCode: string | undefined;
 	setCssCode: (code: string) => void;
-	jsCode: string;
+	jsCode: string | undefined;
 	setJsCode: (code: string) => void;
 }
 

@@ -13,19 +13,19 @@ import Toolbar from './Toolbar/Toolbar';
 interface PlaygroundProps {
 	id: string;
 	title: string;
-	html: string;
-	css: string;
-	js: string;
+	html?: string;
+	css?: string;
+	js?: string;
 	mode: 'default' | 'react';
 	layoutMode: 'codepen' | 'side-by-side' | 'vertical-stack' | 'tabbed';
 	size: 'normal' | 'wide';
 	centered: boolean;
 	boxSizing: 'content-box' | 'border-box';
 	splitRatio: string;
-	resultStyle: { [key: string]: string | number | undefined };
-	stacked: boolean;
+	resultStyle?: { [key: string]: string | number | undefined };
+	stacked?: boolean;
 	startFullscreened: boolean;
-	hideTabCheckbox: boolean;
+	hideTabCheckbox?: boolean;
 }
 
 const Playground = ({
@@ -204,6 +204,7 @@ const Playground = ({
 					rightChild={resultPane}
 				/>
 			);
+			break;
 		}
 
 		case 'vertical-stack': {

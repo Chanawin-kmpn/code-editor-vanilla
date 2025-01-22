@@ -5,7 +5,7 @@ import { Highlight } from 'prism-react-renderer';
 import { flushSync } from 'react-dom';
 
 interface EditorProps {
-	code: string;
+	code: string | undefined;
 	language: string;
 	maxHeight?: string | undefined;
 	handleUpdate: (code: string) => void;
@@ -86,7 +86,7 @@ const Editor = ({
 			<label inert={isFocusingYellowBox}>
 				<SimpleEditor
 					ref={textareaRef}
-					value={code}
+					value={code!}
 					onValueChange={handleUpdate}
 					onKeyDown={handleKeyDown}
 					translate="no"

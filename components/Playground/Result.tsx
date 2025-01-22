@@ -6,9 +6,9 @@ import useDebouncedValues from '@/hooks/use-debounced-values';
 type ResultProps = {
 	id: string;
 	codeMap: {
-		markup: string;
-		css: string;
-		javascript: string;
+		markup: string | undefined;
+		css: string | undefined;
+		javascript: string | undefined;
 	};
 	mode: 'default' | 'react';
 	centered: boolean;
