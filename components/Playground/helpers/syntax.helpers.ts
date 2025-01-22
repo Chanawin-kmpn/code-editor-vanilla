@@ -19,7 +19,7 @@ export const syntaxTheme: PrismTheme = {
 		},
 		{
 			types: ['boolean', 'number'],
-			style: { color: '#CD743A' }, // แทน var(--syntax-bool)
+			style: { color: '#f97316' }, // แทน var(--syntax-bool)
 		},
 		{
 			types: ['attr-name', 'tag'],
@@ -28,7 +28,7 @@ export const syntaxTheme: PrismTheme = {
 		{
 			types: ['string', 'attr-value'],
 			style: {
-				color: '#3b82f6', // แทน var(--syntax-val)
+				color: '#0ea5e9', // แทน var(--syntax-val)
 			},
 		},
 		{
@@ -42,7 +42,13 @@ export const syntaxTheme: PrismTheme = {
 				'keyword',
 			],
 			style: {
-				color: '#d73a49', // แทน var(--syntax-str)
+				color: '#d4d4d8', // แทน var(--syntax-str)
+			},
+		},
+		{
+			types: ['unit'],
+			style: {
+				color: '#ef4444',
 			},
 		},
 		{

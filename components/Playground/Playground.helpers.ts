@@ -65,7 +65,6 @@ export function usePrettier({
 
 		const prettierOptions = {
 			printWidth: 40,
-			tabWidth: 4,
 		};
 
 		if (jsCode) {

@@ -91,7 +91,7 @@ const Editor = ({
 					onValueChange={handleUpdate}
 					onKeyDown={handleKeyDown}
 					translate="no"
-					className="font-firaCode"
+					className="font-firaCode p-4 code-editor"
 					highlight={(code) => (
 						<Highlight theme={syntaxTheme} code={code} language={language}>
 							{({ tokens, getLineProps, getTokenProps }) => (

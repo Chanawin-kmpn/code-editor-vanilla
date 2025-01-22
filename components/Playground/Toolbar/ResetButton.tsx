@@ -7,8 +7,8 @@ interface ResetButtonProps {
 
 const ResetButton = ({ handleReset }: ResetButtonProps) => {
 	return (
-		<button onClick={handleReset}>
-			<Undo2 size={16} />
+		<button onClick={handleReset} className="action-btn">
+			<Undo2 />
 		</button>
 	);
 };

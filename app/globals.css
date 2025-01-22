@@ -25,6 +25,13 @@ code {
 }
 
 @layer components {
+	.code-editor {
+		& > textarea,
+		& .token-line,
+		& .token-line * {
+			outline: none !important;
+		}
+	}
 	.divider-btn {
 		position: relative;
 		z-index: 2;
@@ -94,6 +101,25 @@ code {
 	.inline-outer-wrapper {
 		&[data-stacked='true'] {
 			margin-bottom: 16px;
+		}
+	}
+
+	.action-btn {
+		width: 2rem;
+		height: 2rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		color: inherit;
+		opacity: 1;
+
+		svg {
+			display: block;
+		}
+
+		&:focus-visible {
+			outline-color: var(--color-primary);
+			outline-offset: -1px;
 		}
 	}
 }

@@ -12,7 +12,7 @@ interface ToolbarProps {
 
 const Toolbar = ({ title, handleReset, handleFormat }: ToolbarProps) => {
 	return (
-		<div className="relative flex justify-between items-center h-8 leading-8 px-4 bg-zinc-700 rounded-t-md">
+		<div className="relative flex justify-between items-center h-8 leading-8 px-4 bg-zinc-700 rounded-t-[4px]">
 			<p className="text-sm font-firaCode font-bold">
 				{title || 'Code Playground'}
 			</p>

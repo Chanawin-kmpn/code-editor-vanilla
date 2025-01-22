@@ -2,69 +2,41 @@ import Playground from '@/components/Playground/Playground';
 
 export default function Home() {
 	const htmlCode = `  
-	<div class="card">  
-	  <img src="/api/placeholder/300/200" alt="Card image" class="card-image">  
-	  <div class="card-content">  
-		<h2>Card Title</h2>  
-		<p>This is a simple card component built with HTML and CSS only.</p>  
-		<button class="card-button">Learn More</button>  
-	  </div>  
-	</div>  
+	<style>
+  .pink.box {
+    margin-top: -32px;
+    margin-left: -32px;
+  }
+</style>
+
+<main>
+  <div class="pink box"></div>
+</main>
 	  `;
 
 	const cssCode = `  
-	.card {  
-	  max-width: 300px;  
-	  border-radius: 8px;  
-	  overflow: hidden;  
-	  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);  
-	  background: white;  
-	}  
-	
-	.card-image {  
-	  width: 100%;  
-	  height: 200px;  
-	  object-fit: cover;  
-	}  
-	
-	.card-content {  
-	  padding: 1.5rem;  
-	}  
-	
-	.card-content h2 {  
-	  margin: 0 0 0.5rem;  
-	  color: #1a1a1a;  
-	  font-size: 1.25rem;  
-	}  
-	
-	.card-content p {  
-	  margin: 0 0 1rem;  
-	  color: #666;  
-	  line-height: 1.5;  
-	}  
-	
-	.card-button {  
-	  background: #4f46e5;  
-	  color: white;  
-	  border: none;  
-	  padding: 0.5rem 1rem;  
-	  border-radius: 4px;  
-	  cursor: pointer;  
-	  font-weight: 500;  
-	}  
-	
-	.card-button:hover {  
-	  background: #4338ca;  
-	}  
+	main {
+  width: 200px;
+  height: 200px;
+  border: 3px solid;
+}
+
+.box {
+  width: 50%;
+  height: 50%;
+  background: white;
+}
+.pink.box {
+  border: 3px solid deeppink;
+}
 	  `.trim();
 	return (
-		<div>
-			{/* <Playground
+		<div className="max-w-[90rem] mx-auto">
+			<Playground
 				id="demo-1"
 				title="CodePen Layout Demo"
-				html={initialHtml}
-				css={initialCss}
-				js={initialJs}
+				html={htmlCode}
+				css={cssCode}
 				mode="default"
 				layoutMode="codepen"
 				size="normal"
@@ -72,7 +44,20 @@ export default function Home() {
 				boxSizing="border-box"
 				splitRatio="0.5"
 				startFullscreened={false}
-			/> */}
+			/>
+			<Playground
+				id="demo-2"
+				title="Side by side Layout Demo"
+				html={htmlCode}
+				mode="default"
+				layoutMode="side-by-side"
+				size="normal"
+				centered={true}
+				boxSizing="border-box"
+				splitRatio="0.5"
+				startFullscreened={false}
+			/>
+
 			<Playground
 				id="demo-3"
 				title="Tabbed Layout Demo"
@@ -80,6 +65,19 @@ export default function Home() {
 				css={cssCode}
 				mode="default"
 				layoutMode="tabbed"
+				size="normal"
+				centered={true}
+				boxSizing="border-box"
+				splitRatio="0.5"
+				startFullscreened={false}
+			/>
+			<Playground
+				id="demo-4"
+				title="Vertical stack Layout Demo"
+				html={htmlCode}
+				css={cssCode}
+				mode="default"
+				layoutMode="vertical-stack"
 				size="normal"
 				centered={true}
 				boxSizing="border-box"
