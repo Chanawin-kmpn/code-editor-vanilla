@@ -4,6 +4,7 @@ import React, { ComponentRef, useRef, useState } from 'react';
 import { Highlight } from 'prism-react-renderer';
 import { flushSync } from 'react-dom';
 import { syntaxTheme } from './helpers/syntax.helpers';
+import VisuallyHidden from '../VisuallyHidden';
 
 interface EditorProps {
 	code: string | undefined;
@@ -84,8 +85,9 @@ const Editor = ({
 					Focus the editor. This will trap focus until you press Escape.
 				</span>
 			</button>
-			<label inert={isFocusingYellowBox}>
+			<label htmlFor="code-editor" inert={isFocusingYellowBox}>
 				<SimpleEditor
+					id="code-editor"
 					ref={textareaRef}
 					value={code!}
 					onValueChange={handleUpdate}
@@ -108,6 +110,7 @@ const Editor = ({
 						</Highlight>
 					)}
 				/>
+				<VisuallyHidden>Label for Code Editor</VisuallyHidden>
 			</label>
 		</div>
 	);

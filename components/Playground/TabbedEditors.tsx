@@ -39,7 +39,7 @@ const TabbedEditors = ({
 					}) => (
 						<button
 							key={pane.language}
-							className={`${pane === activePane ? 'font-bold text-zinc-100 border mt-1 border-transparent border-b-lime-500 ' : 'font-normal text-zinc-500'} font-firaCode px-4 py-2 `}
+							className={`${pane === activePane ? 'font-bold text-zinc-100 border mt-1 border-transparent border-b-lime-500 ' : 'font-normal text-zinc-400'} font-firaCode px-4 py-2 `}
 							onClick={() => setActiveLanguage(pane.language)}
 						>
 							{pane.label}
