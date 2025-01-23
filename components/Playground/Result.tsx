@@ -93,7 +93,7 @@ const Result = React.memo(function Result({
 			className={`relative rounded-[4px] bg-white resize-${resize} ${stretched && 'flex-1'} h-[${stretched ? '100%' : undefined}] w-full max-w-full min-h-[360px] my-0 mx-auto overflow-hidden`}
 		>
 			{loading && (
-				<div className="absolute z-50 top-4 right-4 opacity-50 text-black">
+				<div className="absolute z-50 top-4 right-4 opacity-50 text-zinc-900">
 					Loading...
 				</div>
 			)}
