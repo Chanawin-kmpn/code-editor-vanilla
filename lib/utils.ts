@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-spread */
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+
 type Timeout = ReturnType<typeof setTimeout>;
 export const throttle = (func: Function, limit: number) => {
 	let lastFunc: Timeout;
@@ -35,4 +38,21 @@ export function moveCursorWithinInput(
 
 	input?.focus();
 	input?.setSelectionRange(position, position);
+}
+
+// ฟังก์ชัน normalize (เหมือนเดิม)
+export const normalize = (
+	number: number,
+	currentScaleMin: number,
+	currentScaleMax: number,
+	newScaleMin = 0,
+	newScaleMax = 1
+) => {
+	const standardNormalization =
+		(number - currentScaleMin) / (currentScaleMax - currentScaleMin);
+	return (newScaleMax - newScaleMin) * standardNormalization + newScaleMin;
+};
+
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
 }

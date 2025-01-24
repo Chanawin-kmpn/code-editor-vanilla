@@ -8,18 +8,16 @@ interface RefreshButtonProps {
 
 const RefreshButton = ({ handleRefresh }: RefreshButtonProps) => {
 	const [rotation, setRotation] = useState(0);
-	const [isHovering, setIsHovering] = useState(false);
 	return (
-		<abbr title="Refresh pane">
+		<abbr>
 			<button
-				className={`origin-center transition-all duration-500 ${isHovering ? 'opacity-100' : 'opacity-70'} action-btn`}
+				title="Refresh Preview"
+				className={`origin-center transition-transform ease-out duration-500 action-btn`}
 				style={{ transform: `rotate(${rotation}deg)` }} // This is a dynamic style
 				onClick={() => {
 					handleRefresh();
 					setRotation((r) => r + 180);
 				}}
-				onMouseEnter={() => setIsHovering(true)}
-				onMouseLeave={() => setIsHovering(false)}
 			>
 				<RefreshCw size={16} />
 				<VisuallyHidden>Refresh for rerender result</VisuallyHidden>
