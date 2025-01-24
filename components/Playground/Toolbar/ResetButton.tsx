@@ -2,6 +2,7 @@ import React from 'react';
 import { RotateCcw } from 'lucide-react';
 import VisuallyHidden from '@/components/VisuallyHidden';
 import { normalize } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast';
 
 const RESET_AFTER = 1000; // 1 วินาที
 
@@ -10,6 +11,7 @@ interface ResetButtonProps {
 }
 
 const ResetButton = ({ handleReset }: ResetButtonProps) => {
+	const { toast } = useToast();
 	const [isRunning, setIsRunning] = React.useState(false);
 	const [rotation, setRotation] = React.useState(0);
 	const mouseDownAt = React.useRef<number | null>(null);
@@ -24,8 +26,17 @@ const ResetButton = ({ handleReset }: ResetButtonProps) => {
 	function handleMouseUp() {
 		if (!mouseDownAt.current) return;
 
+		const delta = Date.now() - mouseDownAt.current;
+
+		if (delta < 900) {
+			toast({
+				description: 'กรุณากดปุ่มข้างไว้ 1 วินาที เพื่อรีเซ็ตโค้ด',
+				variant: 'destructive',
+			});
+		}
+
 		setIsRunning(false);
-		setRotation(0); // รีเซ็ตการหมุนกลับไปที่ 0
+		setRotation(0);
 		mouseDownAt.current = null;
 	}
 
